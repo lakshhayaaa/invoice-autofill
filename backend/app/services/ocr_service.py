@@ -4,12 +4,11 @@ from pathlib import Path
 from app.db.base import InvoiceFile
 from sqlalchemy.orm import Session
 import os
-import cv2
 from app.utils.image_utils import image_preprocessing
 from app.utils.ocr_utils import extract_bounding_boxes,merge_ocr_results,score
 from app.db.base import InvoiceOCRData
 import pdfplumber
-
+from app.utils.text_normalization import get_normalized_ocr_words
 
 def process_invoice_ocr(db: Session,invoice_id: int):
     # Fetch the invoice file record from the database
@@ -53,7 +52,6 @@ def _process_pdf_invoice(db: Session,invoice_file: InvoiceFile):
     if ocr_results:
         invoice_file.status = "ocr completed"
         db.commit()
-
         save_ocr_results(db, invoice_file, ocr_results, source="digital")
 
         return {

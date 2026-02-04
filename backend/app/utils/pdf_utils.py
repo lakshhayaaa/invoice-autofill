@@ -14,7 +14,7 @@ def extract_words_from_pdf(pdf_path:Path)->list:
                 
                 pages_words.append({
                 "page":page_number,
-                "texts":word['text'],
+                "text":word['text'],
                 "x": x0,
                 "y": y0,
                 "width": x1 - x0,

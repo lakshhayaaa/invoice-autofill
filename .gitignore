@@ -21,3 +21,8 @@ backend/app/storage/**/*
 
 # Allow gitkeep files
 !backend/app/storage/**/.gitkeep
+
+# Label Studio generated files (DO NOT COMMIT)
+label_studio_tasks.json
+label_studio_export.json
+*label_studio*.json

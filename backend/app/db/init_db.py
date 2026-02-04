@@ -1,4 +1,4 @@
-from app.db.session import SessionLocal
+from backend.app.db.session import SessionLocal
 
 def get_db():
     db = SessionLocal()
@@ -6,3 +6,6 @@ def get_db():
         yield db
     finally:
         db.close()
+
+def get_db_session():
+    return SessionLocal()
