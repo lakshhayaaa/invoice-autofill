@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.db.base import InvoiceFile
-from app.db.init_db import get_db
+from backend.app.db.base import InvoiceFile
+from backend.app.db.init_db import get_db
 
 router=APIRouter()
 @router.get("/view-invoices")

@@ -7,26 +7,104 @@ from training.build_dataset import (
     load_ocr_rows_grouped_by_invoice
 )
 
-
 import torch
 
+# ALL 67 LABELS - matching your Label Studio config
 LABEL_LIST = [
-    "O",
-    "SELLER_NAME",
-    "SELLER_ADDRESS",
-    "SELLER_GSTIN",
-
-    "BILLED_TO_NAME",
-    "BILLED_TO_ADDRESS",
-    "BILLED_TO_GSTIN",
-
-    "INVOICE_NUMBER",
-    "INVOICE_DATE",
-
-    "ITEM_DESC",
-    "ITEM_QTY",
-    "ITEM_RATE",
-    "ITEM_AMOUNT"
+    "O",  # Outside/no label
+    
+    # Document Metadata
+    "invoice_number",
+    "invoice_date",
+    "invoice_type",
+    "due_date",
+    "irn",
+    "ack_number",
+    "ack_date",
+    "eway_bill_number",
+    
+    # Order References
+    "order_number",
+    "sub_order_number",
+    "order_date",
+    "po_number",
+    "customer_id",
+    "awb_number",
+    
+    # Vendor/Seller Information
+    "vendor_name",
+    "vendor_address",
+    "vendor_gstin",
+    "vendor_pan",
+    "vendor_cin",
+    "vendor_email",
+    "vendor_phone",
+    
+    # Customer/Buyer Information
+    "customer_name",
+    "customer_address",
+    "customer_gstin",
+    "customer_pan",
+    
+    # Shipping Information
+    "shipping_name",
+    "shipping_address",
+    "shipping_date",
+    "place_of_supply",
+    "state_code",
+    
+    # Transport/Logistics
+    "vehicle_number",
+    "transport_name",
+    
+    # Line Items
+    "item_serial_number",
+    "item_description",
+    "item_code",
+    "item_hsn_code",
+    "item_quantity",
+    "item_unit_of_measure",
+    "item_unit_price",
+    "item_amount",
+    "item_color",
+    "item_size",
+    "item_discount",
+    "item_width",
+    "item_cgst_rate",
+    "item_cgst_amount",
+    "item_sgst_rate",
+    "item_sgst_amount",
+    "item_igst_rate",
+    "item_igst_amount",
+    
+    # Financial Summary
+    "subtotal",
+    "discount_amount",
+    "discount_rate",
+    "shipping_charges",
+    "convenience_fee",
+    "cgst_rate",
+    "cgst_amount",
+    "sgst_rate",
+    "sgst_amount",
+    "igst_rate",
+    "igst_amount",
+    "round_off",
+    "total_amount",
+    "amount_paid",
+    "amount_due",
+    "total_tax_amount",
+    
+    # Payment Information
+    "payment_terms",
+    "bank_name",
+    "account_number",
+    "ifsc_code",
+    "account_holder_name",
+    
+    # Optional
+    "salesperson",
+    "agent_name"
 ]
 
 model = LayoutLMv3ForTokenClassification.from_pretrained(
@@ -41,7 +119,6 @@ processor = LayoutLMv3Processor.from_pretrained(
     "microsoft/layoutlmv3-base",
     apply_ocr=False
 )
-
 
 label2id = {label: i for i, label in enumerate(LABEL_LIST)}
 id2label = {i: label for label, i in label2id.items()}

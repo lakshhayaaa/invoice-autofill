@@ -1,7 +1,7 @@
-from app.db.init_db import get_db
+from backend.app.db.init_db import get_db
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from app.services.standard_text_service import extract_processing_of_word
+from backend.app.services.standard_text_service import extract_processing_of_word
 
 router=APIRouter()
 @router.post("/standardise-invoice/{invoice_id}")

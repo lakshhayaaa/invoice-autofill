@@ -1,7 +1,7 @@
 from fastapi import APIRouter, UploadFile, File, Depends
 from sqlalchemy.orm import Session
-from app.db.init_db import get_db
-from app.services.upload_service import upload_invoice_service
+from backend.app.db.init_db import get_db
+from backend.app.services.upload_service import upload_invoice_service
 
 router = APIRouter()
 

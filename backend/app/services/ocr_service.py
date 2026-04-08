@@ -1,14 +1,14 @@
-from app.core.config import  BASE_DIR
-from app.utils.pdf_utils import pdf_to_images, extract_words_from_pdf
+from backend.app.core.config import  BASE_DIR
+from backend.app.utils.pdf_utils import pdf_to_images, extract_words_from_pdf
 from pathlib import Path
-from app.db.base import InvoiceFile
+from backend.app.db.base import InvoiceFile
 from sqlalchemy.orm import Session
 import os
-from app.utils.image_utils import image_preprocessing
-from app.utils.ocr_utils import extract_bounding_boxes,merge_ocr_results,score
-from app.db.base import InvoiceOCRData
+from backend.app.utils.image_utils import image_preprocessing
+from backend.app.utils.ocr_utils import extract_bounding_boxes,merge_ocr_results,score
+from backend.app.db.base import InvoiceOCRData
 import pdfplumber
-from app.utils.text_normalization import get_normalized_ocr_words
+from backend.app.utils.text_normalization import get_normalized_ocr_words
 
 def process_invoice_ocr(db: Session,invoice_id: int):
     # Fetch the invoice file record from the database

@@ -1,15 +1,15 @@
 from fastapi import UploadFile, HTTPException
 from sqlalchemy.orm import Session
 import os
-from app.db.base import InvoiceFile
-from app.utils.file_utils import (
+from backend.app.db.base import InvoiceFile
+from backend.app.utils.file_utils import (
     get_file_size_bytes,
     is_allowed_file,
     get_file_category,
     generate_safe_filename,
     save_file
 )
-from app.core.config import MAX_FILE_SIZE_MB, PDF_STORAGE_DIR, IMAGE_STORAGE_DIR 
+from backend.app.core.config import MAX_FILE_SIZE_MB, PDF_STORAGE_DIR, IMAGE_STORAGE_DIR 
 
 
 def upload_invoice_service(file: UploadFile, db: Session):

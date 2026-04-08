@@ -23,21 +23,28 @@ def build_label_studio_tasks(db):
             .all()
         )
 
-        words = []
-        for r in rows:
-            words.append({
-            "text": r.text,
-            "x": r.x,
-            "y": r.y,
-            "width": r.width,
-            "height": r.height
-        })
+        html_parts = []
 
+        for r in rows:
+            text = r.text.strip() if r.text else ""
+            if not text:
+                continue
+
+            # Escape HTML characters
+            text = (
+                text.replace("&", "&amp;")
+                    .replace("<", "&lt;")
+                    .replace(">", "&gt;")
+            )
+
+            html_parts.append(f"<span>{text}</span>")
+
+        html_text = " ".join(html_parts)
 
         task = {
             "data": {
                 "invoice_id": invoice_id,
-                "words": words
+                "text": html_text
             }
         }
 

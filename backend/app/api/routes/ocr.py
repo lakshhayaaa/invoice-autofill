@@ -1,7 +1,7 @@
-from app.db.init_db import get_db
+from backend.app.db.init_db import get_db
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from app.services.ocr_service import process_invoice_ocr
+from backend.app.services.ocr_service import process_invoice_ocr
 
 router=APIRouter()
 @router.post("/process-invoice-ocr/{invoice_id}")

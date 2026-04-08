@@ -1,6 +1,6 @@
 import unicodedata
 from sqlalchemy.orm import Session
-from app.db.base import InvoiceOCRData
+from backend.app.db.base import InvoiceOCRData
 import re
 from typing import List, Dict
 

@@ -1,6 +1,6 @@
 import os
 import uuid
-from app.core.config import ALLOWED_MIME_TYPES
+from backend.app.core.config import ALLOWED_MIME_TYPES
 import shutil
 
 #get file size in bytes
